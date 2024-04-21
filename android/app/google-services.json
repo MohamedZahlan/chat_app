@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "684236992053",
+    "project_id": "chat-app-ec48e",
+    "storage_bucket": "chat-app-ec48e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:684236992053:android:bb7a002280f135c28e0b7c",
+        "android_client_info": {
+          "package_name": "com.zahlan.chat_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrRbKoqsleGbiTRM_Bt-8UubrrV98InPA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
