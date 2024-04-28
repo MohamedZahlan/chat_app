@@ -11,10 +11,11 @@ class ChatView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ChatCubit(),
+      create: (context) => ChatCubit()..getMessage(),
       child: BlocConsumer<ChatCubit, ChatState>(
         listener: (context, state) {},
         builder: (context, state) {
+          ChatCubit cubit = ChatCubit.get(context);
           return Scaffold(
             appBar: AppBar(
               // leading: IconButton(
@@ -38,11 +39,6 @@ class ChatView extends StatelessWidget {
                 ],
               ),
             ),
-            // appBar: buildAppBar(
-            //   context,
-            //   "Mohamed Zahlan",
-
-            // ),
             body: Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: width(context) / 40,
@@ -73,8 +69,12 @@ class ChatView extends StatelessWidget {
                     child: Row(
                       children: [
                         Expanded(
-                          child: TextField(
+                          child: TextFormField(
                             cursorColor: Colors.white,
+                            onFieldSubmitted: (value) {
+                              cubit.sendMessage(value);
+                            },
+                            controller: cubit.messageController,
                             textCapitalization: TextCapitalization.sentences,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -89,7 +89,12 @@ class ChatView extends StatelessWidget {
                           ),
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            if (cubit.messageController.text.isNotEmpty) {
+                              cubit.sendMessage(cubit.messageController.text);
+                              cubit.getMessage();
+                            }
+                          },
                           icon: Icon(
                             Icons.send,
                             size: width(context) / 12,
